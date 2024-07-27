@@ -1,0 +1,31 @@
+<h1>精神疾患でも<br>
+できるんだぞ☆</h1>
+<h5>こちらの掲示板は、精神疾患を持っていて<br>
+        自分の得意なことや苦手なことなど<br>
+        それをどう社会や仕事に役立てて行くかを<br>
+        皆で共有し合う場です<br>
+        あと精神疾患ならではの日頃のグチも発散しましょう☆<br>
+        ぜひ、節度を持った態度でお願いします！<br>
+</h5>
+
+
+<div class="button-container">
+  <%= link_to "新しい投稿", new_post_path, class: "link-button" %>
+</div>
+
+<ul>
+  <% @posts.each do |post| %>
+    <li>
+    <h2><%= post.title %></h2>
+    <p><%= post.content %></p>
+    <span>
+      <!-- ここに日本時間の形式で日時を表示 -->
+      <small><%= post.created_at.in_time_zone('Tokyo').strftime("%Y年%m月%d日 %H:%M") %></small>
+    </span>
+    <div class="edit-delete-wrapper">
+      <%= link_to "編集", edit_post_path(post), class: "link-button" %> <%=
+      button_to "削除", post_path(post), method: :delete, class:
+      "link-delete-button" %>
+    </div>
+  </li>  <% end %>
+</ul>
